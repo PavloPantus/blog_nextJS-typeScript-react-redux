@@ -5,19 +5,71 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "lint": "eslint --ext .jsx,.js,.ts,.tsx ./components/ --fix"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/next-redux-wrapper": "^3.0.0",
+    "@types/react-redux": "^7.1.7",
+    "@types/redux": "^3.6.0",
+    "@types/redux-devtools-extension": "^2.13.2",
+    "@types/redux-thunk": "^2.1.0",
+    "axios": "^0.19.2",
     "isomorphic-unfetch": "3.0.0",
     "next": "latest",
+    "next-redux-wrapper": "^5.0.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@mate-academy/eslint-config": "0.0.12",
+    "@mate-academy/stylelint-config": "0.0.6",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-react": "^7.19.0",
+    "stylelint": "^13.2.1",
     "typescript": "3.7.3"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "lint-staged": {
+    "linters": {
+      "*.css": [
+        "stylelint",
+        "git add"
+      ],
+      "*.js": [
+        "eslint",
+        "git add"
+      ]
+    },
+    "ignore": []
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
