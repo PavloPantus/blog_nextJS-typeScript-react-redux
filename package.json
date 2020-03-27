@@ -11,6 +11,7 @@
     "lint": "eslint --ext .jsx,.js,.ts,.tsx ./components/ --fix"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "https://pkg.csb.dev/reduxjs/redux-toolkit/commit/933aa4a1/@reduxjs/toolkit",
     "@types/axios": "^0.14.0",
     "@types/next-redux-wrapper": "^3.0.0",
     "@types/react-redux": "^7.1.7",

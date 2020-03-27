@@ -1,16 +1,24 @@
+//import {Dispatch} from 'redux';
+//import {ThunkDispatch} from "redux-thunk";
 import axios from 'axios';
 import {Ipost, IpostWithHeaders} from "../interfaces/post";
+import {IRootState} from "./index";
 
 const SET_POSTS = 'SET_POSTS';
 
-const setPosts = (payload: Array<Ipost>)=>({
+ type ISetPosts = {
+  type: typeof SET_POSTS,
+  payload: Array<Ipost>;
+}
+
+const setPosts = (payload: Array<Ipost>): ISetPosts =>({
   type: SET_POSTS,
   payload
 })
 
-export const postsSelector = (state: any)=>state.posts;
+export const postsSelector = (state: IRootState): [] | Array<Ipost> => state.posts;
 
-export const loadPosts =  ()=> async (dispatch: any)=>{
+export const loadPosts = () => async (dispatch: any) => {
   const response = await axios.get('https://simple-blog-api.crew.red/posts');
 
 
@@ -29,10 +37,11 @@ export const loadPosts =  ()=> async (dispatch: any)=>{
 
   dispatch(setPosts(posts));
 
-  return 'dispatched'
 }
 
-export default function (initialState = [], action: any) {
+type PostActions = ISetPosts
+
+export default function (initialState = [], action: PostActions): [] | Array<Ipost> {
   switch (action.type) {
 
     case SET_POSTS: return action.payload;

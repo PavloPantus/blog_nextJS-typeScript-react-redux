@@ -2,14 +2,9 @@ import * as React from 'react';
 import Link from 'next/link';
 import { NextPage} from 'next';
 import Layout from '../components/Layout';
-//import axios from 'axios';
 import {Ipost} from "../interfaces/post";
 import {useSelector} from "react-redux";
 import {postsSelector, loadPosts} from "../store/PostsReducer";
-
-/*interface IndexPageProps {
-  posts: Array<Ipost>,
-}*/
 
 const IndexPage: NextPage = () => {
 
@@ -38,36 +33,10 @@ const IndexPage: NextPage = () => {
   )
 }
 
-IndexPage.getInitialProps = async (ctx: any) => {
-  console.log(ctx)
-  await ctx.store.dispatch(loadPosts());
-  /*const response = await axios.get('https://simple-blog-api.crew.red/posts');
+IndexPage.getInitialProps = async ({store}) => {
 
-  console.log(ctx)
+  await store.dispatch<any>(loadPosts());
 
-  const posts: Array< Ipost > = response.data.map((post: Ipost | IpostWithHeaders) => {
-
-      if ((post as IpostWithHeaders).headers) {
-        return {
-          id: post.id,
-          ...(post as IpostWithHeaders).data,
-        }
-      }
-
-      return post
-    }
-  )
-
-
-  return {
-    props: {
-      posts,
-    }
-  }*/
-
-  return {
-    props: {}
-  }
 }
 
 export default IndexPage;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NextPage, GetServerSideProps} from 'next';
+import { NextPage} from 'next';
 import {Ipost} from "../../interfaces/post";
 import axios from 'axios';
 
@@ -30,22 +30,12 @@ const Post: NextPage< PostProps > = ({post}) => {
   )
 }
 
-/*export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await axios.get('https://simple-blog-api.crew.red/posts');
+Post.getInitialProps = async ({query})=>{
 
-  const paths = response.data.map((post: Ipost) =>`/posts/${post.id}`);
-
-  return {paths, fallback: false}
-}*/
-
-export const getServerSideProps: GetServerSideProps = async ({params})=>{
-
-  const response = await axios.get(`https://simple-blog-api.crew.red/posts/${params!.id}?_embed=comments`);
+  const response = await axios.get(`https://simple-blog-api.crew.red/posts/${query.id}?_embed=comments`);
 
   return {
-    props: {
-      post: response.data,
-    }
+    post: response.data,
   }
 }
 
