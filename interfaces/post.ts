@@ -8,14 +8,13 @@ interface headers {
   'Content-Type': string,
 }
 
-interface data {
-  title: string,
-  body: string
-}
 
 export interface IpostWithHeaders {
   headers: headers,
-  data: data,
+  data: {
+    title: string,
+    body: string
+  },
   id: number,
 }
 

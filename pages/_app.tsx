@@ -2,7 +2,7 @@ import withRedux, {ReduxWrapperAppProps} from 'next-redux-wrapper';
 import App, { AppContext } from 'next/app';
 import { Provider } from 'react-redux';
 import makeStore, {IRootState as RootState} from '../store/index'
-
+import '../styles/reset.scss'
 
 class MyApp extends App<ReduxWrapperAppProps<RootState>> {
   static async getInitialProps({ Component, ctx }: AppContext) {

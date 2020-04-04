@@ -1,5 +1,5 @@
-//import {Dispatch} from 'redux';
-//import {ThunkDispatch} from "redux-thunk";
+import { Action } from 'redux'
+import { ThunkAction } from 'redux-thunk'
 import axios from 'axios';
 import {Ipost, IpostWithHeaders} from "../interfaces/post";
 import {IRootState} from "./index";
@@ -18,9 +18,11 @@ const setPosts = (payload: Array<Ipost>): ISetPosts =>({
 
 export const postsSelector = (state: IRootState): [] | Array<Ipost> => state.posts;
 
-export const loadPosts = () => async (dispatch: any) => {
-  const response = await axios.get('https://simple-blog-api.crew.red/posts');
+export const loadPosts = (
 
+): ThunkAction<void, IRootState, unknown, Action<string>> => async (
+  dispatch) => {
+  const response = await axios.get('https://simple-blog-api.crew.red/posts');
 
   const posts: Array< Ipost > = response.data.map((post: Ipost | IpostWithHeaders) => {
 
