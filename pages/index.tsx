@@ -5,30 +5,45 @@ import Layout from '../components/Layout';
 import {Ipost} from "../interfaces/post";
 import {useSelector} from "react-redux";
 import {postsSelector, loadPosts} from "../store/PostsReducer";
+import styled from 'styled-components';
+import {PostCard} from "../components/PostCard/PostCard";
+
+const StyledIndexPage = styled.main`
+  .index-page {
+  
+    &__main-heading {
+      text-align: center;
+    };
+  };
+  
+  .posts-container {
+    justify-content: center;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(3, 300px);
+  };
+`
 
 const IndexPage: NextPage = () => {
 
   let posts: Array<Ipost> = useSelector(postsSelector);
 
   return (
-    <Layout title="Home | Next.js + TypeScript Example">
-      <h1>Hello Next.js 👋</h1>
-      {posts.map(
-        (post)=>(
-          <>
-            <p>{post.title}</p>
-            body{post.id}
-            <Link href={`/posts/${post.id}`}>
-              <a>{post.body}</a>
-            </Link>
-          </>
-        )
-      )}
-      <p>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </p>
+    <Layout title="all posts">
+      <StyledIndexPage className={'index-page'}>
+        <h1 className={'index-page__main-heading'}>All posts</h1>
+        <div className="posts-container">
+          {posts.map(
+            (post)=>(
+              <Link key={post.id} href={`/posts/${post.id}`}>
+                <a>
+                  <PostCard {...post} />
+                </a>
+              </Link>
+            )
+          )}
+        </div>
+      </StyledIndexPage>
     </Layout>
   )
 }

@@ -22,9 +22,8 @@ const StyledHeader = styled.header`
     };
     
     &__link.selected {
-      border: 1px solid blue;
-      background-color: #b087a2;
-      color: white;
+      border: 1px solid white;
+    
     }
   }
 `

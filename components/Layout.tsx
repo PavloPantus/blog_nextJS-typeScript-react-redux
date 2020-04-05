@@ -1,6 +1,11 @@
 import * as React from 'react';
 import Head from 'next/head';
 import Header from "./Header/Header";
+import styled from "styled-components";
+
+const StyledPageContainer = styled.div`
+  min-height: 70vh;
+`
 
 type Props = {
   title?: string
@@ -17,7 +22,9 @@ const Layout: React.FunctionComponent<Props> = ({
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <Header />
-    {children}
+    <StyledPageContainer>
+      {children}
+    </StyledPageContainer>
     <footer>
       <hr />
       <span>I'm here to stay (Footer)</span>
