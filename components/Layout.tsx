@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Head from 'next/head';
-import Header from "./Header/Header";
-import styled from "styled-components";
+import styled from 'styled-components';
+import Header from './Header/Header';
 
 const StyledPageContainer = styled.div`
   min-height: 70vh;
-`
+`;
 
 type Props = {
   title?: string

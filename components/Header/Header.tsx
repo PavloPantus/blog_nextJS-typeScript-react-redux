@@ -1,6 +1,6 @@
 import React from 'react';
-import Link from "../Link";
 import styled from 'styled-components';
+import Link from '../Link';
 
 const StyledHeader = styled.header`
   background-color: #313b3f;
@@ -27,27 +27,25 @@ const StyledHeader = styled.header`
     
     }
   }
-`
+`;
 
-const Header: React.FC  = () => {
-  return (
-    <StyledHeader>
-      <nav className={'header__nav nav'}>
-        <ul className={'nav__list'}>
-          <li className={'nav__item'}>
-            <Link href="/">
-              <a className={'nav__link'}>See all Posts</a>
-            </Link>
-          </li>
-          <li className={'nav__item'}>
-            <Link href="/posts/new">
-              <a className={'nav__link'}>Create new Post</a>
-            </Link>
-          </li>
-        </ul>
-      </nav>
-    </StyledHeader>
-  );
-}
+const Header: React.FC = () => (
+  <StyledHeader>
+    <nav className="header__nav nav">
+      <ul className="nav__list">
+        <li className="nav__item">
+          <Link href="/">
+            <a className="nav__link">See all Posts</a>
+          </Link>
+        </li>
+        <li className="nav__item">
+          <Link href="/posts/new">
+            <a className="nav__link">Create new Post</a>
+          </Link>
+        </li>
+      </ul>
+    </nav>
+  </StyledHeader>
+);
 
 export default Header;

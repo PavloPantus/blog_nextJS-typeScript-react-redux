@@ -16,6 +16,8 @@ import {useState} from "react";
 
 const NewStyledPost = styled.div`
   padding-top: 30px;
+  overflow: hidden;
+  width: 100%;
   
   .new-post {
     width: 700px;
@@ -28,17 +30,18 @@ const NewStyledPost = styled.div`
     align-items: flex-start;
     
     @keyframes postSent {
-      0% {
-        transform: translateX(0px);
+      30% {
+        transform: translatey(-10%);
       }
       
       100% {
-        transform: translateX(1500px);
+        transform: translateX(150%) scaleY(0.1);
+        
       }
     }
     
     &_sent {
-      animation: postSent 3s;
+      animation: postSent 3s ease-out forwards;
     }
     
     &_not-sent {
@@ -79,6 +82,30 @@ const NewStyledPost = styled.div`
       align-self: flex-end;
     }
   }
+  
+  @keyframes resultOfSendingPost {
+      0% {
+        transform: translateX(-50%) translateY(-300px);
+      }
+      
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+  
+  .result-of-sending-post {
+      animation: resultOfSendingPost 3s forwards ease-out;
+      word-break: break-word;
+      border: 1px solid black;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background-color: #eaf1f4;
+      z-index: 1;
+    }
 `
 
 const NewPost: NextPage = () => {
@@ -108,13 +135,22 @@ const NewPost: NextPage = () => {
           setResultOfSendingPost({
             sent: true,
             message: `Post id ${result.id} was created`})
-            /*timeout that post was sen and ...*/
+
+            setTimeout(()=>{
+              setShowResultOfSendingPost(false);
+              dispatch(setNewPostTitle(''));
+              dispatch(setNewPostBody(''));
+            }, 3000)
         }
         else{
           setResultOfSendingPost({
             sent: false,
-            message: `something went wrong, the error message is ${result}, try again`
+            message: `something went wrong, the error message: ${result}, try again`
           })
+
+          setTimeout(()=>{
+            setShowResultOfSendingPost(false);
+          }, 6000)
         }
 
         setShowResultOfSendingPost(true);
@@ -126,20 +162,28 @@ const NewPost: NextPage = () => {
   return (
     <Layout title={'create new post'}>
       <NewStyledPost>
+        {
+          showResultOfSendingPost && (
+            <div className={'result-of-sending-post'}>
+              {resultOfSendingPost.message}
+            </div>
+          )
+        }
         <div className={`new-post ${
           (showResultOfSendingPost)?
             resultOfSendingPost.sent? 
           'new-post_sent' : 'new-post_not-sent'
           : 
           ''  
-        }`}>
+        }`}
+        >
           <span className={'new-post__title'}>Post title</span>
           <textarea
             value={newPostTitle}
             className={'new-post__title-textarea'}
             placeholder={'I am Title of a new post'}
             onChange={postTitleHandler}
-          ></textarea>
+          />
 
           <span className={'new-post__body'}>
             Post Body
@@ -149,7 +193,7 @@ const NewPost: NextPage = () => {
             className={'new-post__body-textarea'}
             placeholder={'I am Body of a new post'}
             onChange={postBodyHandler}
-          ></textarea>
+          />
 
           <button
             className={'new-post__create-post'}
