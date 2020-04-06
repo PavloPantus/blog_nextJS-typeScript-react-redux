@@ -33,7 +33,6 @@ export const postNewComment = (newCommentValue: string, postId: number
     }
   })
     .then(function (response) {
-      console.log(response, 'response here');
       dispatch(setNewCommentFromServer(response.data))
       dispatch(setNewCommentValue(''))
       return response;
