@@ -18,3 +18,12 @@ export interface IpostWithHeaders {
   id: number,
 }
 
+export interface PostComment {
+  postId: number,
+  body: string,
+  id: number,
+}
+
+export interface PostWithComments extends Ipost {
+  comments: Array<PostComment>,
+}
