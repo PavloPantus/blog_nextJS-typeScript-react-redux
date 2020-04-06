@@ -15,6 +15,7 @@ const StyledHeader = styled.header`
       display: flex;
       padding: 5px;
       color: azure;
+      border: 5px solid transparent;
       
       &:hover {
         background-color: #444b4b;

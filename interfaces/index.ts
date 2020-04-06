@@ -4,7 +4,8 @@
 //
 // import User from 'path/to/interfaces';
 
-export type User = {
-  id: number
-  name: string
-}
+import {ThunkDispatch} from "redux-thunk";
+import {IRootState} from "../store";
+import {Action} from "redux";
+
+export type MyThunkDispatch = ThunkDispatch<IRootState, unknown, Action>

@@ -27,3 +27,8 @@ export interface PostComment {
 export interface PostWithComments extends Ipost {
   comments: Array<PostComment>,
 }
+
+export interface INewPost {
+  title: string,
+  body: string,
+}

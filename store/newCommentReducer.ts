@@ -21,7 +21,7 @@ export const newCommentValueSelector = (state: IRootState): string => state.newC
 
 export const postNewComment = (newCommentValue: string, postId: number
 
-): ThunkAction<void, IRootState, unknown, Action<string>> => async (
+): ThunkAction<Promise<any>, IRootState, unknown, Action<string>> => async (
   dispatch) => {
   return await axios( {
     url: 'https://simple-blog-api.crew.red/comments',
@@ -36,6 +36,7 @@ export const postNewComment = (newCommentValue: string, postId: number
       console.log(response, 'response here');
       dispatch(setNewCommentFromServer(response.data))
       dispatch(setNewCommentValue(''))
+      return response;
     })
     .catch(function (error) {
       console.log(error);

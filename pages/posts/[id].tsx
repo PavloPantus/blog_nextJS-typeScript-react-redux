@@ -10,6 +10,7 @@ import {newCommentFromServerSelector, setNewCommentFromServer} from "../../store
 import {useEffect, useState} from "react";
 
 import {PostComment} from "../../interfaces/post";
+import {MyThunkDispatch} from "../../interfaces";
 
 const StyledPost = styled.main`
   padding-top: 30px;
@@ -86,7 +87,7 @@ interface PostProps{
 
 const Post: NextPage< PostProps > = ({post}) => {
 
-  const dispatch = useDispatch();
+  const dispatch: MyThunkDispatch = useDispatch();
 
   const newCommentValue = useSelector(newCommentValueSelector);
 
@@ -111,7 +112,7 @@ const Post: NextPage< PostProps > = ({post}) => {
   }
 
   return (
-    <Layout>
+    <Layout title={title}>
       <StyledPost>
         <article className={'post'}>
           <h1 className={'post__heading'}>{title} {post.id}</h1>
@@ -132,7 +133,8 @@ const Post: NextPage< PostProps > = ({post}) => {
               />
 
               <button
-                onClick={()=>{dispatch(postNewComment(newCommentValue,id))}}
+                onClick={()=>{
+                  dispatch(postNewComment(newCommentValue,id))}}
                 className={'add-comment__add-comment-button'}
               >
                 Add new comment
