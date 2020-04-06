@@ -22,7 +22,7 @@ const StyledHeader = styled.header`
     };
     
     &__link.selected {
-      border: 1px solid white;
+      border: 5px solid white;
     
     }
   }
@@ -39,7 +39,7 @@ const Header: React.FC  = () => {
             </Link>
           </li>
           <li className={'nav__item'}>
-            <Link href="/about">
+            <Link href="/posts/new">
               <a className={'nav__link'}>Create new Post</a>
             </Link>
           </li>

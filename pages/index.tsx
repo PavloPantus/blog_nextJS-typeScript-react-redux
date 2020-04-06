@@ -12,11 +12,14 @@ const StyledIndexPage = styled.main`
   .index-page {
   
     &__main-heading {
+      margin-top: 20px;
       text-align: center;
+      font-size: 20px;
     };
   };
   
   .posts-container {
+    margin-top: 20px;
     justify-content: center;
     display: grid;
     grid-gap: 30px;

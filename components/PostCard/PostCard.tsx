@@ -4,8 +4,9 @@ import {Ipost} from "../../interfaces/post";
 
 const StyledPostCard = styled.article`
   background-color: #f4f4f4;
+  height: 200px;
+  padding: 10px;
   .post-card {
-  
     &__title {
       text-align: center;
       font-size: 20px;
@@ -21,7 +22,7 @@ const StyledPostCard = styled.article`
 
 export const PostCard: React.FC<Ipost> = ({title, body}) => {
   return (
-    <StyledPostCard className={'post-card'}>
+    <StyledPostCard>
       <h2 className={'post-card__title'}>{title.slice(0,50)}</h2>
       <p className={'post-card__body'}>{body.slice(0,100)}...</p>
     </StyledPostCard>
